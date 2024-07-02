@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-     Hello World
+    Task Whiz
    </>
   )
 }
