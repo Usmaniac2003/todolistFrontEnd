@@ -1,10 +1,12 @@
 import "../Styles/EditProfile.scss"
 import avatar from "../assets/avatar.png"
+import SettingIcon from "../assets/SettingIcon.png"
 const EditProfilePage = () => {
   return (
     <div className='profilePage'>
-      <div className="wrapper">
+
         <h1>Account setting</h1>
+      <div className="mynewrapper">
         <div className="accountSetting">
 
           <div className="avatar">
@@ -13,7 +15,7 @@ const EditProfilePage = () => {
           </div>
 
           <div className="accountForm">
-            <form>
+            <form className="accountInfo">
               <div className="formItem">
                 <label htmlFor="name">Name</label>
                 <input type="text" id="name" name="name" required placeholder="Enter your full name" />
@@ -50,12 +52,49 @@ const EditProfilePage = () => {
 
       <div className="bottom">
         <h1>Change password</h1>
+
+      <div className="mywrapper">
+
         <div className="changePassword">
+
+            <form>
+
+              <div className="formItem">
+                <label htmlFor="currPass">Current Password</label>
+                <input type="text" id="currPass" name="currPass" required placeholder="Password" />
+              </div>
+
+              <div className="formItem">
+                <label htmlFor="newPass">New Password</label>
+                <input type="text" id="newPass" name="newPass" required placeholder="Password" />
+              </div>
+
+              <div className="formItem">
+                <label htmlFor="confPass">Confirm Password</label>
+                <input type="text" id="confPass" name="confPass" required placeholder="Confirm new password" />
+              </div>
+
+              <div className="formItem">
+                <div className="buttons">
+
+                  <button className="save" type="submit">
+                    Change Password
+                  </button>
+
+                  <button className="cancel">
+                    Cancel
+                  </button>
+
+                </div>
+
+              </div>
+            </form>
 
         </div>
 
         <div className="imgContainer">
-
+          <img src={SettingIcon} alt="" />
+        </div>
         </div>
 
       </div>
