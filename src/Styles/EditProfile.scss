@@ -1,0 +1,75 @@
+.profilePage {
+    margin-left: 100px;
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .accountSetting {
+            background-color: #E1D3F8;
+            display: flex;
+            // padding: 20px;
+
+            .avatar {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 40px 20px;
+                border: 1px solid #E9EAF0;
+
+                img {
+                    height: 280px;
+                    width: 280px;
+                }
+
+                p {
+                    color: #6E7485;
+                    width: 80%;
+                    text-align: center;
+                    margin-top: 10px;
+                    font-size: 14px;
+                    font-weight: 200;
+                }
+
+            }
+
+            .accountForm {
+                flex: 3;
+                display: flex;
+                flex-direction: column;
+                
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    width: 80%;
+                    margin: auto;
+                    gap: 20px;
+                    .formItem{
+                        display: flex;
+                        flex-direction: column;
+                        label {
+                            font-size: 14px;
+                            margin-bottom: 5px;
+                        }
+
+                        input {
+                            color: #8C94A3;
+                            font-size: 16px;
+                            padding: 10px;
+                            border: none;
+                        }   
+                    }
+                }
+
+            }
+        }
+    }
+}
