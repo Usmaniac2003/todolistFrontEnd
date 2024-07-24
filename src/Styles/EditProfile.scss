@@ -1,0 +1,177 @@
+.profilePage {
+    margin-left: 100px;
+
+    @media screen and (max-width: 886px) {
+        margin-left: 50px;
+    }
+    @media screen and (max-width: 498px) {
+        margin-left: 20px;
+    }
+
+    // All heading styles
+    h1 {
+        font-size: 24px;
+        font-weight: 700;
+        margin: 20px 0;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .formItem {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            input {
+                color: #8C94A3;
+                font-size: 16px;
+                padding: 10px;
+                border: none;
+            }
+
+            .buttons {
+                display: flex;
+                gap: 20px;
+                @media screen and (max-width: 464px) {
+                    flex-direction: column;
+                }
+
+                button {
+                    font-size: 16px;
+                    font-weight: 500;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                }
+
+                .save {
+                    color: white;
+                    background-color: black;
+                }
+
+                .cancel {
+                    color: black;
+                    background-color: white;
+                    padding: 10px 40px;
+                }
+            }
+        }
+    }
+
+    // Upload photo and update account info
+    .mynewrapper {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+
+        .accountSetting {
+            background-color: #E1D3F8;
+            display: flex;  
+            @media screen and (max-width: 796px) {
+                flex-direction: column;
+                padding-bottom: 20px;
+            }  
+
+            .avatar {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 40px 20px;
+                border: 1px solid #E9EAF0;
+
+                img {
+                    height: 280px;
+                    width: 280px;
+                }
+
+                p {
+                    color: #6E7485;
+                    width: 80%;
+                    text-align: center;
+                    margin-top: 10px;
+                    font-size: 14px;
+                    font-weight: 200;
+                }
+
+            }
+
+            .accountForm {
+                flex: 3;
+                display: flex;
+                flex-direction: column;
+
+                .accountInfo {
+                    width: 80%;
+                    margin: auto;
+                }
+            }
+        }
+
+        @media screen and (max-width: 1111px) {
+            width: 90%;
+        }
+
+        @media screen and (max-width: 837px) {
+            width: 95%;
+        }
+    }
+
+    // Change Password and Icon
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        margin: 40px 0;
+        overflow: hidden;
+
+        .mywrapper {
+            display: flex;
+            justify-content: space-between;
+
+            .changePassword {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                background-color: #A7E5F2;
+                padding: 10px 40px;
+                width: 50%;
+
+                @media screen and (max-width: 943px) {
+                    width: 60%;
+                    padding: 20px 40px;
+                }
+                @media screen and (max-width: 683px) {
+                    width: 80%;
+                    margin: auto;
+                }
+                
+
+                form {
+                    .buttons {
+                        gap: 40px;
+                    }
+                }
+            }
+
+            .imgContainer {
+                margin-right: 5px;
+
+                img {
+                    height: 400px;
+                    width: 400px;
+                }
+
+                @media screen and (max-width: 943px) {
+                    display: none;
+                }
+            }
+        }
+    }
+}
