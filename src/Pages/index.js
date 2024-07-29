@@ -1,3 +1,3 @@
 import EditProfilePage from "./EditProfilePage";
-
-export {EditProfilePage};
+import PinnerList from "./PinnerList";
+export {EditProfilePage,PinnerList};

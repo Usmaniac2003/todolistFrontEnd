@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import "./Styles/root.css"
-import { EditProfilePage } from './Pages';
+import { EditProfilePage,PinnerList } from './Pages';
 
 const URL="https://taskwhiz-266479ed8de8.herokuapp.com/";
 
@@ -10,6 +10,7 @@ function App() {
   return (
     <>
     Task Whiz
+    <PinnerList/>
    </>
   )
 }

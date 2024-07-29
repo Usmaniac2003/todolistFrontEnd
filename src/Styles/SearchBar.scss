@@ -1,0 +1,19 @@
+.search{
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: #F0EFF0;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    input{
+        background-color: transparent;
+        border: none;
+    }
+    img{
+        height: 28px;
+        width: 28px;
+    }
+}
