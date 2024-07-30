@@ -1,3 +1,5 @@
 import EditProfilePage from "./EditProfilePage";
 import PinnerList from "./PinnerList";
-export {EditProfilePage,PinnerList};
+import TrashList from "./TrashList";
+import ArchiveList from "./ArchivedList";
+export {EditProfilePage,PinnerList,TrashList,ArchiveList};
