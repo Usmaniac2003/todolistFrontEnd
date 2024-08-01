@@ -1,0 +1,43 @@
+/* Header container */
+.header {
+  background: #929FCB;
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon container */
+.header .icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 1vw;
+  transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  border-radius: 8px; /* Rounded corners */
+  padding: 5px; /* Space around icon */
+}
+
+/* Hover effect for icons */
+.header .icon:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Subtle background color */
+  transform: scale(1.1); /* Slightly enlarge */
+  color: #f0f0f0; /* Change text color on hover */
+}
+
+/* Button styles */
+.header .buttons .MuiButton-root {
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 20px; /* Rounded buttons */
+}
+
+/* Hover effect for buttons */
+.header .buttons .MuiButton-root:hover {
+  background-color: #333333;
+  color: #ffffff;
+  transform: translateY(-2px); /* Slight lift effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}

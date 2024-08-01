@@ -1,0 +1,66 @@
+/* Footer.css */
+.UpperFooter {
+    display: flex;
+    align-items: center;
+    min-height: 20vh;
+    background-color: #929FCB;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  
+  .UpperFooter .logo,
+  .UpperFooter .FooterLinkSection {
+    flex: 1 1 200px;
+    margin: 10px;
+    text-align: center;
+  }
+  
+  .UpperFooter .SOCIAL_TRAY {
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+    margin: 4vh 0;
+  }
+  
+  .UpperFooter img {
+    height: 20px;
+  }
+  
+  .FooterLinkSection img {
+    width: 10vw;
+    margin-bottom: 2vh;
+  }
+  
+  .FooterLinkSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .lowerFooter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+    background-color: #282c34;
+    padding: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .UpperFooter {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .FooterLinkSection img {
+      width: 50%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .FooterLinkSection img {
+      width: 70%;
+    }
+  }
+  
