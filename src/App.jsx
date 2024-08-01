@@ -11,7 +11,10 @@ function App() {
 
   return (
     <>
-    TaskWhiz.
+    <Header></Header>
+    <EditProfilePage></EditProfilePage>
+    <Footer></Footer>
+   
    </>
   )
 }
