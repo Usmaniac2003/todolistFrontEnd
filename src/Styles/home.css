@@ -1,0 +1,44 @@
+.WelcomeSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 5vh 0;
+}
+
+.WelcomeText {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  align-items: center;
+  text-align: center;
+}
+
+.WelcomeIcon {
+  margin-bottom: 2vh;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  margin: 3vh 0;
+}
+
+@media (min-width: 768px) {
+  .WelcomeSection {
+    flex-direction: row;
+  }
+  .WelcomeText {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .buttons {
+    flex-direction: row;
+    align-items: center;
+    gap: 1vw;
+  }
+  .WelcomeIcon {
+    margin-bottom: 0;
+  }
+}/*# sourceMappingURL=home.css.map */

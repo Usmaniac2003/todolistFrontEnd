@@ -1,9 +1,13 @@
 import SearchBar from "../Components/SearchBar"
 import "../Styles/PinnedList.scss"
 import ListItem from "../Components/ListItem"
+import Header from "../Components/Header"
+import Footer from "../Components/Footer"
 const ArchiveList = () => {
   return (
-    <div className='PinnedList'>
+    <>
+<Header></Header>
+<div className='PinnedList'>
         <div className="top">
             <SearchBar/>
         </div>
@@ -22,6 +26,8 @@ const ArchiveList = () => {
 
         </div>
     </div>
+    <Footer></Footer>
+    </>
   )
 }
 

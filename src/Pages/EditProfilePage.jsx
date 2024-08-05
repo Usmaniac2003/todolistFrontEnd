@@ -1,8 +1,12 @@
 import "../Styles/EditProfile.scss"
 import avatar from "../assets/avatar.png"
 import SettingIcon from "../assets/SettingIcon.png"
+import Footer from "../Components/Footer"
+import Header from "../Components/Header"
 const EditProfilePage = () => {
   return (
+    <>
+    <Header></Header>
     <div className='profilePage'>
 
         <h1>Account setting</h1>
@@ -99,6 +103,8 @@ const EditProfilePage = () => {
 
       </div>
     </div>
+    <Footer></Footer>
+    </>
   )
 }
 
