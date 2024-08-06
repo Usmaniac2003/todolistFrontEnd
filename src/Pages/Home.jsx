@@ -12,6 +12,9 @@ import Box6 from '../assets/B6.png';
 import Box7 from '../assets/B7.png';
 import Box8 from '../assets/B8.png';
 import WhyChooseUs from '../assets/WhyChooseUs.png';
+import WhyChooseUsP1 from '../assets/WhyChooseUsP1.png';
+import WhyChooseUsP2 from '../assets/WhyChooseUsP2.png';
+
 import HowToBegin from '../assets/HowToBegin.png';
 import Testimonials from '../assets/Testimonials.png';
 import Girl from '../assets/SittingGirl.png';
@@ -148,7 +151,10 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <img src={WhyChooseUs} alt="" className="responsive-img" style={{ width: '100%', margin: '5vh 0' }} />
+      <div className="WhyChooseUs7" style={{display:"flex",gap:"4vw",justifyContent:"space-evenly",alignItems:"center"}}>
+        <img src={WhyChooseUsP1} alt="" style={{height:"30vw"}}  />
+        <img src={WhyChooseUsP2} alt="" style={{width:"50vw"}}/>
+      </div>
 <img src={HowToBegin} alt="" className="responsive-img" style={{ width: '100%', margin: '5vh 0' }} />
 <img src={Testimonials} alt="" className="responsive-img" style={{ width: '100%', marginTop: '5vh' }} />
 <img
