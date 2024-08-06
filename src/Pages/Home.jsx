@@ -17,7 +17,7 @@ import Testimonials from '../assets/Testimonials.png';
 import Girl from '../assets/SittingGirl.png';
 
 import '../Styles/Fonts.css';
-
+import "../Styles/home.css"
 const Home = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
@@ -32,6 +32,19 @@ const Home = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const imgStyle = {
+    width: 'clamp(120px,25vw,300px)',
+    height: 'auto',
+    objectFit: 'cover',
+    margin: '10px',
+    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+  };
+
+  const hoverStyle = {
+    transform: 'scale(1.05)',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+  };
 
   return (
     <>
@@ -65,7 +78,7 @@ const Home = () => {
               Simplify Your Workflow Today!
             </Typography>
             <br />
-            <Typography variant={isMobile?"body1":"caption"}>
+            <Typography variant="body1">
               TaskWhiz is a powerful to-do list website designed to help you organize
               <br /> and manage your tasks efficiently. Streamline your workflow and achieve
               <br /> your goals with ease using our intuitive platform.
@@ -113,29 +126,38 @@ const Home = () => {
             Templates Available for Everyday Tasks{' '}
           </Typography>
           <div className="TemplateBoxes" style={{ margin: '5vh' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', marginBottom: '2vh' }}>
-              <img src={Box1} alt="" style={{ width: '15vw', height: 'auto', objectFit: 'cover' }} />
-              <img src={Box2} alt="" style={{ width: '15vw', height: 'auto', objectFit: 'cover' }} />
-              <img src={Box3} alt="" style={{ width: '15vw', height: 'auto', objectFit: 'cover' }} />
-              <img src={Box4} alt="" style={{ width: '15vw', height: 'auto', objectFit: 'cover' }} />
+            <div style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap' }}>
+              <div>
+                <img src={Box1} alt="" style={imgStyle} className="hoverable" />
+                <img src={Box2} alt="" style={imgStyle} className="hoverable" />
+              </div>
+              <div>
+                <img src={Box3} alt="" style={imgStyle} className="hoverable" />
+                <img src={Box4} alt="" style={imgStyle} className="hoverable" />
+              </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', marginBottom: '2vh' }}>
-              <img src={Box5} alt="" style={{ width: '15vw', height: 'auto', objectFit: 'cover' }} />
-              <img src={Box6} alt="" style={{ width: '15vw', height: 'auto', objectFit: 'cover' }} />
-              <img src={Box7} alt="" style={{ width: '15vw', height: 'auto', objectFit: 'cover' }} />
-              <img src={Box8} alt="" style={{ width: '15vw', height: 'auto', objectFit: 'cover' }} />
+              <div>
+                <img src={Box5} alt="" style={imgStyle} className="hoverable" />
+                <img src={Box6} alt="" style={imgStyle} className="hoverable" />
+              </div>
+              <div>
+                <img src={Box7} alt="" style={imgStyle} className="hoverable" />
+                <img src={Box8} alt="" style={imgStyle} className="hoverable" />
+              </div>
             </div>
           </div>
         </div>
-        <img src={WhyChooseUs} alt="" style={{ width: '100%', margin: '5vh 0' }} />
-        <img src={HowToBegin} alt="" style={{ width: '100%', margin: '5vh 0' }} />
-        <img src={Testimonials} alt="" style={{ width: '100%', marginTop: '5vh' }} />
-        <img
-          src={Girl}
-          alt=""
-          style={{ width: '10vw', marginLeft: '10vw', marginBottom: '4vh', position: 'relative', bottom: '100px' }}
-        />
-      </div>
+        <img src={WhyChooseUs} alt="" className="responsive-img" style={{ width: '100%', margin: '5vh 0' }} />
+<img src={HowToBegin} alt="" className="responsive-img" style={{ width: '100%', margin: '5vh 0' }} />
+<img src={Testimonials} alt="" className="responsive-img" style={{ width: '100%', marginTop: '5vh' }} />
+<img
+  src={Girl}
+  alt=""
+  className="responsive-img-small"
+  style={{ width: '10vw', marginLeft: '10vw', marginBottom: '4vh', position: 'relative', bottom: '100px' }}
+/>
+</div>
       <Footer />
     </>
   );
