@@ -11,9 +11,9 @@ function App() {
 
   return (
     <>
-    {/* <Lists></Lists> */}
+    <Lists></Lists>
     {/* <Login/> */}
-    <Signup/>
+    {/* <Signup/> */}
    </>
   )
 }
