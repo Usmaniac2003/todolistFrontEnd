@@ -2,6 +2,7 @@
 .header {
   background: #929FCB;
   min-height: 10vh;
+  max-height: 10vh;
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -26,6 +27,7 @@
   background-color: rgba(255, 255, 255, 0.2); /* Subtle background color */
   transform: scale(1.1); /* Slightly enlarge */
   color: #f0f0f0; /* Change text color on hover */
+  z-index: 1000;
 }
 
 /* Button styles */
