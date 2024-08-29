@@ -30,7 +30,7 @@ const TodoList = ({ todolistName, tasks, category }) => {
         padding: "1rem",
         borderRadius: "8px",
         background: "#fff",
-        width: "400px",
+        width: "300px",
         boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
         display: "flex",
         flexDirection: "column",
@@ -90,11 +90,12 @@ const TodoList = ({ todolistName, tasks, category }) => {
         className="categoryBOX"
         style={{
           background: "#FD71AF",
-          width: "4vw",
           borderRadius: "40px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          padding:"0.2rem",
+          width: "clamp(60px,4vw,60px)"
         }}
       >
         <Typography variant="caption" style={{ color: "black" }}>
@@ -103,7 +104,7 @@ const TodoList = ({ todolistName, tasks, category }) => {
       </div>
       <div
         className="Deadline_Button"
-        style={{ display: "flex", alignItems: "center", gap: "12vw" }}
+        style={{ display: "flex", alignItems: "center",justifyContent:"space-between" }}
       >
         <div
           className="deadline"

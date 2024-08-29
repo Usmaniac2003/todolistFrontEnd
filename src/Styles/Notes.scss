@@ -1,0 +1,54 @@
+.notes_section {
+    background: #E6E4F0;
+    padding: 2vw;
+    overflow-x: hidden;
+  }
+  
+  .addNote {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1vw;
+  }
+  
+  .addNoteText {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+  }
+  
+  .addNoteIcon {
+    height: 30px;
+  }
+  
+  .notes {
+    display: grid;
+    gap: 1vw;
+    padding: 1vw;
+    grid-template-columns: repeat(3, 1fr); /* Default: 3 columns for desktop */
+    grid-auto-flow: row;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .noteItem {
+    box-sizing: border-box;
+    padding: 1vw;
+    border: 1px solid #000;
+    border-radius: 4px;
+  }
+  
+  /* Tablet (2 columns) */
+  @media (max-width: 1024px) {
+    .notes {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Mobile (1 column) */
+  @media (max-width: 600px) {
+    .notes {
+      grid-template-columns: 1fr;
+    }
+  }
+  

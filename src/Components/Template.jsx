@@ -17,7 +17,7 @@ const TodoListTemplate = ({ todolistName, tasks, category }) => {
         padding: "1rem",
         borderRadius: "8px",
         background:"#fff",
-        width: "400px",
+        width: "300px",
         boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
         display: "flex",
         flexDirection: "column",
@@ -52,10 +52,10 @@ const TodoListTemplate = ({ todolistName, tasks, category }) => {
         ))}
       </List>
       <hr></hr>      
-      <div className="categoryBOX" style={{ background: "#FD71AF", width: "4vw", borderRadius: "40px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <div className="categoryBOX" style={{ background: "#FD71AF",padding:"0.2rem", width: "clamp(60px,4vw,60px)", borderRadius: "40px", display: "flex", justifyContent: "center", alignItems: "center" }}>
         <Typography variant='caption' style={{ color: "black" }}>{category}</Typography>
       </div>
-      <div className="Deadline_Button" style={{ display: "flex", alignItems: "center", gap: "12vw" }}>
+      <div className="Deadline_Button" style={{ display: "flex", alignItems: "center", justifyContent:"space-between" }}>
         <div className="deadline" style={{ display: "flex", alignItems: "center" }}>
           <Typography style={{ color: "#E34444" }}>Deadline:</Typography>
           <Typography variant='body1' style={{ color: "grey" }}>&nbsp;not set</Typography>

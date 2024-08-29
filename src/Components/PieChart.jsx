@@ -1,6 +1,5 @@
-import React from 'react';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
-import { Card, CardContent, Typography } from '@mui/material';
+import {  Typography } from '@mui/material';
 
 const CompletionPieChart = ({ completion }) => {
   const data = [

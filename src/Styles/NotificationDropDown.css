@@ -19,6 +19,10 @@
   left: -200px;
   background-color: white;
   border-radius: 10px;
+  border: 1px solid #1A1D29;
+  z-index: 100;
+  height: 400px;
+  overflow-y: scroll;
 }
 .Dropdown .notifications .top {
   display: flex;
@@ -31,10 +35,11 @@
   width: 200px;
 }
 .Dropdown .notifications .top p {
+  margin-top: 10px;
   color: #1A1D29;
   font-weight: 800;
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 16px;
 }
 .Dropdown .notifications .top .num {
   color: white;
@@ -84,13 +89,25 @@
 }
 .Dropdown .notifications .item .info p {
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
 }
 .Dropdown .notifications .item .info .time {
   color: rgba(30, 30, 30, 0.62);
   font-weight: 300;
   font-size: 12px;
 }
-.Dropdown .notifications .item p {
+.Dropdown .notifications .item .desc {
   text-align: center;
+  width: 95%;
+  margin: auto;
+}
+.Dropdown .notifications .item button {
+  background-color: #1A1D29;
+  color: white;
+  width: 40%;
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin-left: 35px;
+  margin-bottom: 15px;
 }/*# sourceMappingURL=NotificationDropDown.css.map */
