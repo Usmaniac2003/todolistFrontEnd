@@ -4,6 +4,7 @@ import Email from "../assets/email.png";
 import Bag from "../assets/bag.png";
 import MobileBg from "../assets/mobile_bg.png";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -87,7 +88,8 @@ const Login = () => {
                             id="login-submit" >
                             <button type="submit" > Login </button> </div>
                     </form>
-                    <p className="lastPara">Don't have an account? <a href="">Create an account</a></p>
+                    
+                    <p className="lastPara">Don't have an account? <Link to={"/Signup"}>Create an account</Link></p>
                 </div>
             </div>
         </div>

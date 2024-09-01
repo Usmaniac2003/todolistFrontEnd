@@ -6,6 +6,7 @@ import Bag from "../assets/bag.png";
 import MobileBg from "../assets/mobile_bg.png";
 import Person from "../assets/person.png";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -99,7 +100,7 @@ const Signup = () => {
                             id="login-submit" >
                             <button type="submit" > Create Account</button> </div>
                     </form>
-                    <p className="lastPara">Already have an account  <a href="">Sign in</a></p>
+                    <p className="lastPara">Already have an account  <Link to={"/Login"}>Sign in</Link></p>
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import MobileHeader from "./MobileHeader";
 import NotificationDropDown from './NotificationDropDown';
 import '../Styles/header.css'; // Import the CSS file
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,14 +24,14 @@ const Header = () => {
   const isTablet = useMediaQuery('(max-width:1140px)');
 
   const menuItems = [
-    { icon: <HomeRoundedIcon />, label: 'Home' },
-    { icon: <ReceiptLongIcon />, label: 'Lists' },
-    { icon: <SellIcon />, label: 'Categories' },
-    { icon: <ArchiveOutlinedIcon />, label: 'Archive' },
-    { icon: <PushPinIcon />, label: 'Pinned' },
-    { icon: <NotificationsIcon />, label: 'Notifications' },
-    { icon: <DeleteIcon />, label: 'Trash' },
-    { icon: <SettingsIcon />, label: 'Settings' },
+    { path: "/", icon: <HomeRoundedIcon />, label: 'Home' },
+    { path: "/Lists", icon: <ReceiptLongIcon />, label: 'Lists' },
+    { path: "/", icon: <SellIcon />, label: 'Categories' }, // Updated path
+    { path: "/ArchivedList", icon: <ArchiveOutlinedIcon />, label: 'Archive' },
+    { path: "/PinnedList", icon: <PushPinIcon />, label: 'Pinned' },
+    { path: "", icon: <NotificationsIcon />, label: 'Notifications' },
+    { path: "/TrashList", icon: <DeleteIcon />, label: 'Trash' },
+    { path: "/EditProfilePage", icon: <SettingsIcon />, label: 'Settings' },
   ];
 
   const getLogoSize = () => {
@@ -45,10 +46,11 @@ const Header = () => {
     return 'medium';
   };
 
-  const getOnClick = (name) => {
-    if (name === "Notifications") {
+  const handleMenuItemClick = (label) => {
+    if (label === "Notifications") {
       setIsNotificationsOpen(!isNotificationsOpen);
     }
+    // Add any additional click handling here if needed
   };
 
   const getLabelStyle = () => {
@@ -62,10 +64,17 @@ const Header = () => {
     if (isTablet) return { padding: '5px 10px', fontSize: '12px' };
     return { padding: '7px 14px', fontSize: '14px' };
   };
-
+  const navigate=useNavigate();
+  const NavigateToLogIn =()=>{
+    navigate("/Login")
+  }
+  const NavigateToSignUp =()=>{
+    navigate("/Signup")
+  }
   return (
     <>
-      {isMobile && <MobileHeader open={isMenuOpen} onClose={() => setIsMenuOpen(false)} />}
+      {isMobile && <MobileHeader open={isMenuOpen} onClose={() => setIsMenuOpen(false)} 
+ />}
 
       <div className="header">
         <img src={LOGO} style={{ height: getLogoSize(), margin: "1vw" }} alt="Logo" />
@@ -78,19 +87,48 @@ const Header = () => {
 
             <div className="menu_icons" style={{ display: "flex", alignItems: "center", color: "white", flexGrow: 1 }}>
               {menuItems.map((item, index) => (
-                <div key={index} className="icon" onClick={() => getOnClick(item.label)}>
-                  {React.cloneElement(item.icon, { fontSize: getIconSize() })}
-                  <Typography variant="caption" style={{ color: "black", ...getLabelStyle() }}>{item.label}</Typography>
-                  {item.label === "Notifications" && isNotificationsOpen && <NotificationDropDown />}
-                </div>
+                item.label === "Notifications" || item.label === "Categories" //  Change this Logic When Adding Categories
+                ? (
+                  <div
+                    key={index}
+                    className="icon"
+                    onClick={() => handleMenuItemClick(item.label)}
+                    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', cursor: 'pointer' }}
+                  >
+                    {React.cloneElement(item.icon, { fontSize: getIconSize() })}
+                    <Typography variant="caption" style={getLabelStyle()}>
+                      {item.label}
+                    </Typography>
+                    {isNotificationsOpen && <NotificationDropDown />}
+                  </div>
+                ) : (
+                  <Link to={item.path} key={index} style={{ color: "white", textDecoration: "none" }}>
+                    <div
+                      className="icon"
+                      onClick={() => handleMenuItemClick(item.label)}
+                      style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', cursor: 'pointer' }}
+                    >
+                      {React.cloneElement(item.icon, { fontSize: getIconSize() })}
+                      <Typography variant="caption" style={getLabelStyle()}>
+                        {item.label}
+                      </Typography>
+                    </div>
+                  </Link>
+                )
               ))}
             </div>
 
             <div className="buttons" style={{ display: "flex", gap: "10px" }}>
-              <Button variant="contained" style={{ backgroundColor: "#1A1D29", color: "#FFF", borderRadius: "0", ...getButtonStyle() }}>
+              <Button onClick={NavigateToLogIn}
+                variant="contained"
+                style={{ backgroundColor: "#1A1D29", color: "#FFF", borderRadius: "0", ...getButtonStyle() }}
+              >
                 Log In
               </Button>
-              <Button variant="contained" style={{ backgroundColor: "#FFF", color: "#1A1D29", borderRadius: "0", ...getButtonStyle() }}>
+              <Button onClick={NavigateToSignUp}
+                variant="contained"
+                style={{ backgroundColor: "#FFF", color: "#1A1D29", borderRadius: "0", ...getButtonStyle() }}
+              >
                 Sign Up
               </Button>
             </div>

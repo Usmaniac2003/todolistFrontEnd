@@ -3,14 +3,17 @@ import "../Styles/PinnedList.scss"
 import ListItem from "../Components/ListItem"
 import Footer from "../Components/Footer"
 import Header from "../Components/Header"
+import { Typography, useMediaQuery } from "@mui/material"
+
 const PinnerList = () => {
+  const isMobile = useMediaQuery('(max-width:600px)');
   return (
     <>
 <Header></Header>
-    <div className='PinnedList'>
-        <div className="top">
-            <SearchBar/>
-        </div>
+    <div className='PinnedList' style={{display:"flex",flexDirection:"column",alignItems:"center",margin:"5vw"}}>
+        <Typography variant= {isMobile?"h6":"h4"} fontWeight={600} marginTop={"4vh"}>Pinned Lists</Typography>
+        <SearchBar/>
+        
 
         <div className="listItems">
             <ListItem actionName={"Unpin List"}/>

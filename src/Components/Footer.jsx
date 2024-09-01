@@ -1,4 +1,3 @@
-import React from 'react';
 import { Typography, useMediaQuery } from '@mui/material';
 import LOGO from "../assets/logo.png";
 import FB from "../assets/fb.png";
