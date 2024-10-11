@@ -1,14 +1,22 @@
+import React, { useState } from "react";
+import { Typography } from "@mui/material";
 import AddListIcon from "../assets/AddListIcon.png";
 import SearchBar from "../Components/SearchBar";
 import ListIcon from "../assets/list.png";
 import Tick1 from "../assets/tick1.png";
 import Tick2 from "../assets/tick2.png";
 import Alarm from "../assets/alarm.png";
-import { Typography } from "@mui/material";
-import "../Styles/List.css";
+import AddListModal from "../Components/AddListModal"; // Import AddListModal
+import "../Styles/List.scss";
 import "../Styles/Notes.scss";
 
-function Dashboard() {
+const Dashboard = () => {
+  const [open, setOpen] = useState(false);
+
+  // Toggle Modal Open/Close
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <div
@@ -22,14 +30,13 @@ function Dashboard() {
           gap: "4vw",
         }}
       >
-        
         <div
           className="Statistics"
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent:"center",
+            justifyContent: "center",
             gap: "4vh",
             width: "90vw",
           }}
@@ -41,7 +48,7 @@ function Dashboard() {
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
-              justifyContent:"center",
+              justifyContent: "center",
               gap: "2vw",
               flexWrap: "wrap", // Allows boxes to wrap on smaller screens
             }}
@@ -93,7 +100,7 @@ function Dashboard() {
                   alignItems: "center",
                   justifyContent: "space-evenly",
                   padding: "1vh 1vw",
-                  gap:"1vw"
+                  gap: "1vw",
                 }}
               >
                 <div
@@ -117,12 +124,12 @@ function Dashboard() {
                     }}
                   />
                 </div>
-                <div className="text" style={{display:"flex",justifyContent:"center",flexDirection:"column",alignItems:"center"}}>
+                <div className="text" style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
                   <Typography
                     color="white"
                     style={{
                       fontSize: "clamp(0.8rem, 2vw, 1.2rem)",
-                      fontWeight:"600" // Responsive font size
+                      fontWeight: "600", // Responsive font size
                     }}
                   >
                     {box.count}
@@ -141,26 +148,30 @@ function Dashboard() {
             ))}
           </div>
         </div>
-        
-        <img
-  src={AddListIcon}
-  className="AddListIcon"
-  alt=""
-  style={{
-    height: "clamp(50px, 8vw, 100px)",
-    transition: "transform 0.3s ease-in-out, height 0.3s ease-in-out",
-  }}
-  onMouseEnter={(e) => {
-    e.currentTarget.style.transform = "scale(1.1)";
-  }}
-  onMouseLeave={(e) => {
-    e.currentTarget.style.transform = "scale(1)";
-  }}
-/>
 
+        {/* Add List Icon */}
+        <img
+          src={AddListIcon}
+          className="AddListIcon"
+          alt=""
+          style={{
+            height: "clamp(50px, 8vw, 100px)",
+            transition: "transform 0.3s ease-in-out, height 0.3s ease-in-out",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "scale(1.1)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "scale(1)";
+          }}
+          onClick={handleOpen} // Open modal on clicking this button
+        />
       </div>
+
+      {/* Use the AddListModal Component */}
+      <AddListModal open={open} handleClose={handleClose} />
     </>
   );
-}
+};
 
 export default Dashboard;

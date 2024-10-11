@@ -4,7 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import MenuIcon from "@mui/icons-material/Menu";
 import EditIcon from "@mui/icons-material/Edit";
 import LaunchIcon from "@mui/icons-material/Launch";
-import "../Styles/List.css";
+import "../Styles/List.scss";
 import "../Styles/Notes.scss";
 import ListIcon from "../assets/list.png";
 import Tick1 from "../assets/tick1.png";

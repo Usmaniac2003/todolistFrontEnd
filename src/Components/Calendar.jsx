@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../Styles/Calendar.css'; // Import your custom CSS file
+import '../Styles/Calendar.scss'; // Import your custom CSS file
 
 const MyCustomCalendar = () => {
   const [date, setDate] = useState(new Date());

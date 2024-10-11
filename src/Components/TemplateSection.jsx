@@ -1,6 +1,6 @@
 import { Typography, Box } from "@mui/material";
 import TodoListTemplate from "../Components/Template";
-import "../Styles/List.css";
+import "../Styles/List.scss";
 import "../Styles/Notes.scss";
 
 // Templates data

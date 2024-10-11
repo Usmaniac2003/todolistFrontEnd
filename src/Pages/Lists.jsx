@@ -1,6 +1,6 @@
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-import "../Styles/List.css";
+import "../Styles/List.scss";
 import "../Styles/Notes.scss";
 import Dashboard from "../Components/Dashboard";
 import NotesSection from "../Components/NotesSection";
@@ -36,8 +36,7 @@ function Lists() {
           <ToDoListSection></ToDoListSection> 
         </div>
       </div>
-
-      <Footer></Footer>
+          <Footer></Footer>
     </>
   );
 }

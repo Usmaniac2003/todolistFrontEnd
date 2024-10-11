@@ -8,7 +8,6 @@ const NotificationDropDown = () => {
         <img src={Triangle} alt="" />
 
         <div className="notifications">
-
             <div className="top">
                 <p>Notifications</p>
                 <p className="num">2</p>

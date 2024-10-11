@@ -1,6 +1,6 @@
 import CompletionPieChart from "../Components/PieChart";
 import MyCustomCalendar from "../Components/Calendar";
-import "../Styles/List.css";
+import "../Styles/List.scss";
 import "../Styles/Notes.scss";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 

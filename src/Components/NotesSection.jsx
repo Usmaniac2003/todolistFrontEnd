@@ -2,7 +2,7 @@ import AddNote from "../assets/Iconly/Bulk/Plus.png";
 import { Typography } from "@mui/material";
 import ListItem from "../Components/ListItem";
 import DrawIcon from "@mui/icons-material/Draw";
-import "../Styles/List.css";
+import "../Styles/List.scss";
 import "../Styles/Notes.scss";
 
 function NotesSection() {

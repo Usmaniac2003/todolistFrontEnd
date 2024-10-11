@@ -12,7 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MobileHeader from "./MobileHeader";
 import NotificationDropDown from './NotificationDropDown';
-import '../Styles/header.css'; // Import the CSS file
+import '../Styles/header.scss'; // Import the CSS file
 import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {

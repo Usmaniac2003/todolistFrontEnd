@@ -19,8 +19,8 @@ import HowToBegin from '../assets/HowToBegin.png';
 import Testimonials from '../assets/Testimonials.png';
 import Girl from '../assets/SittingGirl.png';
 
-import '../Styles/Fonts.css';
-import "../Styles/home.css"
+import '../Styles/Fonts.scss';
+import "../Styles/home.scss"
 const Home = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 

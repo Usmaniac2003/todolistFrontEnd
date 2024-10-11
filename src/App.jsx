@@ -11,7 +11,6 @@ function App() {
   return (
     <Routes>
     <Route exact path="/" element={<Home></Home>} />
-    <Route  path="/" element={<Home></Home>} />
     <Route  path="/ArchivedList" element={<ArchiveList></ArchiveList>} />
     <Route  path="/EditProfilePage" element={<EditProfilePage></EditProfilePage>} />
     <Route  path="/Lists" element={<Lists></Lists>} />
@@ -19,7 +18,6 @@ function App() {
     <Route  path="/PinnedList" element={<PinnerList></PinnerList>} />
     <Route  path="/Signup" element={<Signup></Signup>} />
     <Route  path="/TrashList" element={<TrashList></TrashList>} />
-  
   </Routes>
   )
 }
