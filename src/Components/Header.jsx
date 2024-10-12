@@ -14,14 +14,18 @@ import MobileHeader from "./MobileHeader";
 import NotificationDropDown from './NotificationDropDown';
 import '../Styles/header.scss'; // Import the CSS file
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Use AuthContext
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-
+  
   const isMobile = useMediaQuery('(max-width:900px)');
   const isSmallTablet = useMediaQuery('(max-width:1000px)');
   const isTablet = useMediaQuery('(max-width:1140px)');
+  
+  const { isAuthenticated, logout } = useAuth(); // Get auth state and logout function
+  const navigate = useNavigate();
 
   const menuItems = [
     { path: "/", icon: <HomeRoundedIcon />, label: 'Home' },
@@ -50,7 +54,6 @@ const Header = () => {
     if (label === "Notifications") {
       setIsNotificationsOpen(!isNotificationsOpen);
     }
-    // Add any additional click handling here if needed
   };
 
   const getLabelStyle = () => {
@@ -64,17 +67,18 @@ const Header = () => {
     if (isTablet) return { padding: '5px 10px', fontSize: '12px' };
     return { padding: '7px 14px', fontSize: '14px' };
   };
-  const navigate=useNavigate();
-  const NavigateToLogIn =()=>{
-    navigate("/Login")
-  }
-  const NavigateToSignUp =()=>{
-    navigate("/Signup")
-  }
+
+  const NavigateToLogIn = () => {
+    navigate("/Login");
+  };
+
+  const NavigateToSignUp = () => {
+    navigate("/Signup");
+  };
+
   return (
     <>
-      {isMobile && <MobileHeader open={isMenuOpen} onClose={() => setIsMenuOpen(false)} 
- />}
+      {isMobile && <MobileHeader open={isMenuOpen} onClose={() => setIsMenuOpen(false)} />}
 
       <div className="header">
         <img src={LOGO} style={{ height: getLogoSize(), margin: "1vw" }} alt="Logo" />
@@ -85,25 +89,13 @@ const Header = () => {
         ) : (
           <div className='nonLogo' style={{ display: "flex", alignItems: "center", gap: isTablet ? "2vw" : "3vw" }}>
 
-            <div className="menu_icons" style={{ display: "flex", alignItems: "center", color: "white", flexGrow: 1 }}>
-              {menuItems.map((item, index) => (
-                item.label === "Notifications" || item.label === "Categories" //  Change this Logic When Adding Categories
-                ? (
-                  <div
-                    key={index}
-                    className="icon"
-                    onClick={() => handleMenuItemClick(item.label)}
-                    style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', cursor: 'pointer' }}
-                  >
-                    {React.cloneElement(item.icon, { fontSize: getIconSize() })}
-                    <Typography variant="caption" style={getLabelStyle()}>
-                      {item.label}
-                    </Typography>
-                    {isNotificationsOpen && <NotificationDropDown />}
-                  </div>
-                ) : (
-                  <Link to={item.path} key={index} style={{ color: "white", textDecoration: "none" }}>
+            {/* Only show menu items when the user is authenticated */}
+            {isAuthenticated && (
+              <div className="menu_icons" style={{ display: "flex", alignItems: "center", color: "white", flexGrow: 1 }}>
+                {menuItems.map((item, index) => (
+                  item.label === "Notifications" || item.label === "Categories" ? (
                     <div
+                      key={index}
                       className="icon"
                       onClick={() => handleMenuItemClick(item.label)}
                       style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', cursor: 'pointer' }}
@@ -112,25 +104,59 @@ const Header = () => {
                       <Typography variant="caption" style={getLabelStyle()}>
                         {item.label}
                       </Typography>
+                      {isNotificationsOpen && <NotificationDropDown />}
                     </div>
-                  </Link>
-                )
-              ))}
-            </div>
+                  ) : (
+                    <Link to={item.path} key={index} style={{ color: "white", textDecoration: "none" }}>
+                      <div
+                        className="icon"
+                        onClick={() => handleMenuItemClick(item.label)}
+                        style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', cursor: 'pointer' }}
+                      >
+                        {React.cloneElement(item.icon, { fontSize: getIconSize() })}
+                        <Typography variant="caption" style={getLabelStyle()}>
+                          {item.label}
+                        </Typography>
+                      </div>
+                    </Link>
+                  )
+                ))}
+              </div>
+            )}
 
+            {/* Show Login/Signup or Logout/User button based on authentication */}
             <div className="buttons" style={{ display: "flex", gap: "10px" }}>
-              <Button onClick={NavigateToLogIn}
-                variant="contained"
-                style={{ backgroundColor: "#1A1D29", color: "#FFF", borderRadius: "0", ...getButtonStyle() }}
-              >
-                Log In
-              </Button>
-              <Button onClick={NavigateToSignUp}
-                variant="contained"
-                style={{ backgroundColor: "#FFF", color: "#1A1D29", borderRadius: "0", ...getButtonStyle() }}
-              >
-                Sign Up
-              </Button>
+              {isAuthenticated ? (
+                <>
+                  <Typography variant="h6" style={{ color: '#FFF' }}>
+                    Welcome, User
+                  </Typography>
+                  <Button
+                    onClick={logout}
+                    variant="contained"
+                    style={{ backgroundColor: "#FFF", color: "#1A1D29", borderRadius: "0", ...getButtonStyle() }}
+                  >
+                    Log Out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    onClick={NavigateToLogIn}
+                    variant="contained"
+                    style={{ backgroundColor: "#1A1D29", color: "#FFF", borderRadius: "0", ...getButtonStyle() }}
+                  >
+                    Log In
+                  </Button>
+                  <Button
+                    onClick={NavigateToSignUp}
+                    variant="contained"
+                    style={{ backgroundColor: "#FFF", color: "#1A1D29", borderRadius: "0", ...getButtonStyle() }}
+                  >
+                    Sign Up
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         )}
