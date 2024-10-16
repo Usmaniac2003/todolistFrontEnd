@@ -15,11 +15,14 @@ import NotificationDropDown from './NotificationDropDown';
 import '../Styles/header.scss'; // Import the CSS file
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Use AuthContext
+import { useUser } from '../context/UserContext';
 
 const Header = () => {
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-  
+    const { user, error } = useUser();
+
   const isMobile = useMediaQuery('(max-width:900px)');
   const isSmallTablet = useMediaQuery('(max-width:1000px)');
   const isTablet = useMediaQuery('(max-width:1140px)');
@@ -75,7 +78,7 @@ const Header = () => {
   const NavigateToSignUp = () => {
     navigate("/Signup");
   };
-
+  if (error) return <div>{error}</div>;
   return (
     <>
       {isMobile && <MobileHeader open={isMenuOpen} onClose={() => setIsMenuOpen(false)} />}
@@ -129,7 +132,7 @@ const Header = () => {
               {isAuthenticated ? (
                 <>
                   <Typography variant="h6" style={{ color: '#FFF' }}>
-                    Welcome, User
+                    Welcome, {user.username}
                   </Typography>
                   <Button
                     onClick={logout}

@@ -17,15 +17,15 @@ export const AuthProvider = ({ children }) => {
     // Function to check if the user is logged in (verify token with backend)
     const checkAuthStatus = async () => {
         try {
-            // Call the backend /auth/check-auth endpoint to verify the JWT token
             await axios.get('http://localhost:3000/auth/check-auth', { withCredentials: true });
-            setIsAuthenticated(true); // If successful, user is authenticated
+            setIsAuthenticated(true);
         } catch (error) {
-            setIsAuthenticated(false); // If there’s an error, user is not authenticated
+            setIsAuthenticated(false);
         } finally {
-            setLoading(false); // Stop loading after the check
+            setLoading(false);
         }
     };
+    
 
     // Call the checkAuthStatus when the component mounts
     useEffect(() => {
