@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import AddListIcon from "../assets/AddListIcon.png";
 import SearchBar from "../Components/SearchBar";
@@ -9,13 +9,29 @@ import Alarm from "../assets/alarm.png";
 import AddListModal from "../Components/AddListModal"; // Import AddListModal
 import "../Styles/List.scss";
 import "../Styles/Notes.scss";
+import { useToDoList } from "../context/ToDoListContext";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
+  const [totalList, setTotalList] = useState(0); // Store total lists count
+  const { fetchTotalListsCount } = useToDoList(); // Access the fetch function
 
-  // Toggle Modal Open/Close
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  // Fetch and update the total list count on mount
+  useEffect(() => {
+    const updateListCount = async () => {
+      try {
+        const response = await fetchTotalListsCount();
+        setTotalList(response); // Set the count from response
+      } catch (error) {
+        console.error("Error updating list count:", error);
+      }
+    };
+
+    updateListCount();
+  }, []); // Run once when component mounts
 
   return (
     <>
@@ -56,15 +72,15 @@ const Dashboard = () => {
             {[
               {
                 background:
-                  "linear-gradient(to right, #FB958D 65%, #FB958D 100%, #F8B0A9 94%, #F8B0A9 75%)",
+                  "linear-gradient(to right, #FB958D 65%, #FB958D 100%)",
                 opacity: "0.58",
                 icon: ListIcon,
-                count: 1550,
+                count: totalList, // Use totalList state here
                 label: "Total Lists",
               },
               {
                 background:
-                  "linear-gradient(to right, #96C9D1 60%, #ADDCE3 100%, #F8B0A9 72%, #F8B0A9 100%)",
+                  "linear-gradient(to right, #96C9D1 60%, #ADDCE3 100%)",
                 opacity: "0.81",
                 icon: Tick1,
                 count: 1220,
@@ -72,7 +88,7 @@ const Dashboard = () => {
               },
               {
                 background:
-                  "linear-gradient(to right, #87ECAF 73%, #87ECAF 100%, #87ECAF 94%, #87ECAF 56%)",
+                  "linear-gradient(to right, #87ECAF 73%, #87ECAF 100%)",
                 opacity: "0.73",
                 icon: Tick2,
                 count: 7,
@@ -80,7 +96,7 @@ const Dashboard = () => {
               },
               {
                 background:
-                  "linear-gradient(to right, #8384F8 26%, #8384F8 100%, #8384F8 100%, #8384F8 55%)",
+                  "linear-gradient(to right, #8384F8 26%, #8384F8 100%)",
                 opacity: "0.77",
                 icon: Alarm,
                 count: 43,
@@ -124,7 +140,15 @@ const Dashboard = () => {
                     }}
                   />
                 </div>
-                <div className="text" style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+                <div
+                  className="text"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
                   <Typography
                     color="white"
                     style={{
@@ -158,13 +182,9 @@ const Dashboard = () => {
             height: "clamp(50px, 8vw, 100px)",
             transition: "transform 0.3s ease-in-out, height 0.3s ease-in-out",
           }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "scale(1.1)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "scale(1)";
-          }}
-          onClick={handleOpen} // Open modal on clicking this button
+          onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          onClick={handleOpen}
         />
       </div>
 

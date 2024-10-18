@@ -30,6 +30,8 @@
     "recharts": "^2.12.7",
     "sass": "^1.77.8",
     "styled-components": "^6.1.11",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "todolist": "file:"
   },
   "devDependencies": {

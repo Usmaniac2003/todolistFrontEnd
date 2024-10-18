@@ -10,7 +10,13 @@ import {
 } from "@mui/material";
 import TodolistButton from "../assets/todolistButton.png";
 
-const TodoList = ({ todolistName, tasks, category }) => {
+// Helper function to format the deadline date
+const formatDeadline = (deadline) => {
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(deadline).toLocaleDateString(undefined, options);
+};
+
+const TodoList = ({ todolistName, tasks, category, deadline }) => {
   const [checkedTasks, setCheckedTasks] = useState(
     new Array(tasks.length).fill(false)
   );
@@ -61,10 +67,10 @@ const TodoList = ({ todolistName, tasks, category }) => {
       >
         {completedTasks}/{tasks.length} tasks completed
       </Typography>
-      <hr></hr>
+      <hr />
       <List
         sx={{
-          maxHeight: "200px", // Adjust height as needed
+          maxHeight: "200px",
           overflowY: "auto",
         }}
       >
@@ -85,7 +91,7 @@ const TodoList = ({ todolistName, tasks, category }) => {
           </ListItem>
         ))}
       </List>
-      <hr></hr>
+      <hr />
       <div
         className="categoryBOX"
         style={{
@@ -94,8 +100,8 @@ const TodoList = ({ todolistName, tasks, category }) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          padding:"0.2rem",
-          width: "clamp(60px,4vw,60px)"
+          padding: "0.2rem",
+          width: "clamp(60px,4vw,60px)",
         }}
       >
         <Typography variant="caption" style={{ color: "black" }}>
@@ -104,7 +110,11 @@ const TodoList = ({ todolistName, tasks, category }) => {
       </div>
       <div
         className="Deadline_Button"
-        style={{ display: "flex", alignItems: "center",justifyContent:"space-between" }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
       >
         <div
           className="deadline"
@@ -112,7 +122,7 @@ const TodoList = ({ todolistName, tasks, category }) => {
         >
           <Typography style={{ color: "#E34444" }}>Deadline:</Typography>
           <Typography variant="body1" style={{ color: "grey" }}>
-            &nbsp;not set
+            &nbsp;{formatDeadline(deadline)}
           </Typography>
         </div>
         <img

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   Modal,
   Box,
@@ -18,8 +18,62 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../Styles/AddListModal.scss";
 import AddListIcon from "../assets/Iconly/Bulk/Plus.png";
+import { useUser } from "../context/UserContext";
+import { useToDoList } from "../context/ToDoListContext";
 
 const AddListModal = ({ open, handleClose }) => {
+const {user}=useUser();  
+const {createToDoList}=useToDoList();
+const [Title,SetTitle]=useState("");
+const [category,Setcategory]=useState("");
+const [UserId,SetUserId]=useState("");
+const [DueDate,SetDueDate]=useState(new Date());  
+const [isPinned,SetisPinned]=useState(false);
+const [isArchived,SetisArchived]=useState(false);
+const [deleteList,SetdeleteList]=useState(false);
+
+const body = {
+  title:Title,
+  category: category,
+  userId: UserId,
+  dueDate: DueDate.toISOString(), // Format date as ISO string for consistency
+  isPinned: isPinned,
+  isArchived: isArchived,
+  deleteList: deleteList,
+};
+  
+  const AddList=()=>{
+    console.log(body);
+    createToDoList(body);
+    handleClose();    
+  }
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleTitleChange = (event) => {
+    SetTitle(event.target.value); // Update the state with the new value
+  };
+  const handleCategoryChange = (event) => {
+    Setcategory(event.target.value);
+  };
+  const handleCheckboxChange2 = (option) => {
+    setSelectedOption((prev) => (prev === option ? null : option));
+  
+    // Directly use the 'option' parameter to set the relevant state
+    if (option === "pin") {
+      SetisPinned((prev) => !prev); // Toggle pin state
+    }
+    if (option === "archive") {
+      SetisArchived((prev) => !prev); // Toggle archive state
+    }
+    if (option === "delete") {
+      SetdeleteList((prev) => !prev); // Toggle delete state
+    }
+  
+    console.log(`Pinned: ${isPinned} Archived: ${isArchived} Delete: ${deleteList}`);
+  };
+  
+
+  //---------------------------
   const [listItems, setListItems] = useState([
     "I want to know who wrote a review on my course.",
     "I want to know daily how many people visited my profile.",
@@ -58,13 +112,17 @@ const AddListModal = ({ open, handleClose }) => {
     setCheckedItems(updatedChecked);
   };
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
 
   // Calculate the number of checked items and the total
   const totalItems = listItems.length;
   const checkedCount = checkedItems.filter(Boolean).length;
   const progressPercentage = totalItems ? (checkedCount / totalItems) * 100 : 0;
 
+  useEffect(() => {
+    if (user && user._id) {
+      SetUserId(user._id);
+    }
+  }, [user]);
   return (
     <Modal open={open} onClose={handleClose} className="AddListModal">
       <Box className="modalContent">
@@ -79,6 +137,8 @@ const AddListModal = ({ open, handleClose }) => {
           placeholder="Title..."
           variant="outlined"
           size="large"
+          value={Title} // Bind the value to the state
+          onChange={handleTitleChange} // Handle changes
           InputProps={{
             disableUnderline: true,
             style: {
@@ -187,6 +247,8 @@ const AddListModal = ({ open, handleClose }) => {
           select
           fullWidth
           variant="outlined"
+          value={category} // Bind state to the TextField
+          onChange={handleCategoryChange} // Update state on change
           sx={{
             width: "40%",
             background: "white",
@@ -215,8 +277,8 @@ const AddListModal = ({ open, handleClose }) => {
         <Box className="deadlineSection" display="flex" flexDirection="column" gap={2}>
           {/* DatePicker for date selection */}
           <DatePicker
-  selected={selectedDate}
-  onChange={(date) => setSelectedDate(date)}
+  selected={DueDate}
+  onChange={(date) => SetDueDate(date)}
   placeholderText="Select Date"
   className="datePickerInput"
   style={{
@@ -230,13 +292,44 @@ const AddListModal = ({ open, handleClose }) => {
         </Box>
 
         {/* Options (Pin, Archive, Delete) */}
-<OptionsSection></OptionsSection>
-        {/* Buttons */}
+        <Box className="optionsSection">
+      <FormControlLabel
+        control={
+          <Checkbox
+            style={{ color: "black" }}
+            checked={selectedOption === "pin"} // Check if this option is selected
+            onChange={() => handleCheckboxChange2("pin")}
+          />
+        }
+        label="Pin List"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            style={{ color: "black" }}
+            checked={selectedOption === "archive"} // Check if this option is selected
+            onChange={() => handleCheckboxChange2("archive")}
+          />
+        }
+        label="Archive List"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            style={{ color: "black" }}
+            checked={selectedOption === "delete"} // Check if this option is selected
+            onChange={() => handleCheckboxChange2("delete")}
+          />
+        }
+        label="Delete List"
+      />
+    </Box>
+         {/* Buttons */}
         <Box className="modalActions">
           <Button
             variant="contained"
             style={{ background: "#1A1D29", color: "white", paddingLeft: "4vw", paddingRight: "4vw" }}
-            onClick={handleClose}
+            onClick={AddList}
           >
             Done
           </Button>
@@ -255,48 +348,11 @@ const AddListModal = ({ open, handleClose }) => {
 
 export default AddListModal;
 
-const OptionsSection = () => {
-  // State to keep track of the selected option
-  const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleCheckboxChange = (option) => {
-    // Set selected option to the clicked one; if clicked again, uncheck it
-    setSelectedOption(selectedOption === option ? null : option);
-  };
-
-  return (
-    <Box className="optionsSection">
-      <FormControlLabel
-        control={
-          <Checkbox
-            style={{ color: "black" }}
-            checked={selectedOption === "pin"} // Check if this option is selected
-            onChange={() => handleCheckboxChange("pin")}
-          />
-        }
-        label="Pin List"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            style={{ color: "black" }}
-            checked={selectedOption === "archive"} // Check if this option is selected
-            onChange={() => handleCheckboxChange("archive")}
-          />
-        }
-        label="Archive List"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            style={{ color: "black" }}
-            checked={selectedOption === "delete"} // Check if this option is selected
-            onChange={() => handleCheckboxChange("delete")}
-          />
-        }
-        label="Delete List"
-      />
-    </Box>
-  );
-};
-
+// const [Title,SetTitle]=useState("");
+// const [Category,SetCategory]=useState("");
+// const [UserId,SetUserId]=useState("");
+// const [DueDate,SetDueDate]=useState("");
+// const [isPinned,SetisPinned]=useState(false);
+// const [isArchived,SetisArchived]=useState(false);
+// const [deleteList,SetdeleteList]=useState(false);
