@@ -15,7 +15,7 @@ export const ToDoListProvider = ({ children }) => {
     const { isAuthenticated } = useAuth();
     const { user } = useUser();
     const [toDoLists, setToDoLists] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [items, setItems] = useState([]); // State for to-do items
     

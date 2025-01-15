@@ -11,7 +11,7 @@ export const useAuth = () => useContext(AuthContext);
 // AuthProvider component to wrap the app and provide auth state
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     // Function to check if the user is logged in (verify token with backend)
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={{ isAuthenticated, loading, login, register, logout }}>
-            {!loading && children}
+            { children}
         </AuthContext.Provider>
     );
 };
